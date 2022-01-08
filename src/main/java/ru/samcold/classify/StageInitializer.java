@@ -22,7 +22,7 @@ public class StageInitializer implements ApplicationListener<FormApplication.Sta
     @Override
     public void onApplicationEvent(FormApplication.StageReadyEvent event) {
         Stage stage = event.getStage();
-        stage.setScene(new Scene(fxWeaver.loadView(MainController.class), 1200, 820));
+        stage.setScene(new Scene(fxWeaver.loadView(MainController.class), 1200, 800));
         stage.setTitle(applicationTitle);
         stage.show();
     }
