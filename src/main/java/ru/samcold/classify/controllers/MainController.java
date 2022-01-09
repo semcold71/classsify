@@ -34,7 +34,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        groupParent = fxWeaver.loadView(GroupController.class);
+        groupParent = fxWeaver.loadView(OperatingModeController.class);
 
         groupBtn.setOnAction(event -> showView.show(
                 containerPane,

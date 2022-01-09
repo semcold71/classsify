@@ -22,7 +22,7 @@ import java.util.Objects;
 
 @Component
 @FxmlView(value = "/fxml/groupView.fxml")
-public class GroupController {
+public class OperatingModeController {
 
     // region FXML
     @FXML
@@ -96,7 +96,7 @@ public class GroupController {
     private final FieldBinder binder;
     private final Decor decor;
 
-    public GroupController(OperatingMode operatingMode, FieldBinder binder, Decor decor) {
+    public OperatingModeController(OperatingMode operatingMode, FieldBinder binder, Decor decor) {
         this.operatingMode = operatingMode;
         this.binder = binder;
         this.decor = decor;
