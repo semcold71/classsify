@@ -17,6 +17,19 @@ public class OperatingMode {
     }
 
     // Input data
+    /**
+     * <p><b>ВХОДНЫЕ ДАННЫЕ</b></p><br>
+     * <b>pNom</b> - номинальная грузоподъемность (Рном), т.<br>
+     * pMax = максимальная грузоподъемность (Рмакс), т.<br>
+     * daysCount = количество дней в году, когда работает кран (П)<br>
+     * pDay - общая масса грузов, перегружаемых краном в день (Рдн), т.<br>
+     * age - фактический срок службы крана (Т), лет<br>
+     * В какой доле циклов производится подъем грузов, массой, %<br>
+     * p025 - до 0,25 Рном<br>
+     * p05 - от 0,25 Рном до 0,5 Рном<br>
+     * p075 - от 0,5 Рном до 0,75 Рном<br>
+     * p1 - от 0,75 Рном до Рном
+     */
     private final DoubleProperty pNom = new SimpleDoubleProperty();
     private final DoubleProperty pMax = new SimpleDoubleProperty();
     private final IntegerProperty daysCount = new SimpleIntegerProperty();
@@ -103,19 +116,6 @@ public class OperatingMode {
 
     public StringProperty aGgtnProperty() {
         return aGgtn;
-    }
-
-
-    private final StringProperty nTooltip = new SimpleStringProperty();
-
-    public StringProperty nTooltipProperty() {
-        return nTooltip;
-    }
-
-    private void setNTooltip() {
-        int x = nProperty().get();
-        String s = decor.decoration(x);
-        nTooltipProperty().set(s);
     }
 
     private void setPYear() {
