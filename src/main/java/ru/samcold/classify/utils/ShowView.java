@@ -5,32 +5,35 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ShowView {
 
-    public void show(AnchorPane parentContainer, Parent root, AnimationDirection direction) {
+    public void show(StackPane parentContainer, Parent root, AnimationDirection direction) {
 
-        KeyValue kv;
+        if (!parentContainer.getChildren().get(0).equals(root)) {
 
-        parentContainer.getChildren().add(root);
+            KeyValue kv;
 
-        if (direction == AnimationDirection.HORIZONTAL) {
-            root.translateXProperty().set(parentContainer.getWidth());
-            kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        } else {
-            root.translateYProperty().set(parentContainer.getHeight());
-            kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+            parentContainer.getChildren().add(root);
+
+            if (direction == AnimationDirection.HORIZONTAL) {
+                root.translateXProperty().set(parentContainer.getWidth());
+                kv = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
+            } else {
+                root.translateYProperty().set(parentContainer.getHeight());
+                kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+            }
+
+            KeyFrame kf = new KeyFrame(Duration.millis(750), kv);
+
+            Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(kf);
+            timeline.setOnFinished(actionEvent -> parentContainer.getChildren().remove(0));
+            timeline.play();
         }
-
-        KeyFrame kf = new KeyFrame(Duration.millis(750), kv);
-
-        Timeline timeline = new Timeline();
-        timeline.getKeyFrames().add(kf);
-        timeline.setOnFinished(actionEvent -> parentContainer.getChildren().remove(0));
-        timeline.play();
     }
 }

@@ -21,17 +21,27 @@
             </ImageView>
             <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                <Button mnemonicParsing="false" text="Группа классификации" />
-                  <Button defaultButton="true" mnemonicParsing="false" text="Режим работы" />
+                <Button fx:id="rorBtn" mnemonicParsing="false" text="Остаточный ресурс" />
+                  <Button fx:id="groupBtn" defaultButton="true" mnemonicParsing="false" text="Режим работы" />
               </buttons>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </ButtonBar>
-            <StackPane id="container" prefHeight="644.0" prefWidth="1176.0">
+            <StackPane id="container" fx:id="containerPane" prefHeight="644.0" prefWidth="1176.0">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="200.0" fitWidth="185.0">
+                     <image>
+                        <Image url="@../img/big-logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
             </StackPane>
          </children>
       </VBox>

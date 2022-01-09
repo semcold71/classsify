@@ -14,7 +14,9 @@
     src: url('fonts/Oswald-Regular.ttf');
 }
 
+
 .root {
+    -fx-warning-color: #F65149;
     -fx-base: #3C3F41;
     -fx-background: #3C3F41;
     -fx-font-size: 14;
@@ -263,6 +265,10 @@
 
 .title-label-1 {
     -fx-font-size: 18;
+}
+
+#warning-label {
+    -fx-text-fill: -fx-warning-color;
 }
 
 /* ============ */
