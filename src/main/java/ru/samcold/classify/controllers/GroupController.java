@@ -1,9 +1,5 @@
 package ru.samcold.classify.controllers;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -198,7 +194,7 @@ public class GroupController {
         // empty or 0 validations
         Validator<String> emptyValidator = Validator.createEmptyValidator("Это поле по может быть пустым", Severity.ERROR);
         Validator<String> not0Validator = (control, value) -> {
-            boolean condition = value != null ? value.equals("0.0") || value.equals("0") : value == null;
+            boolean condition = value != null && (value.equals("0.0") || value.equals("0"));
             return ValidationResult.fromMessageIf(control, "Значение в этом поле должно быть больше 0", Severity.ERROR, condition);
         };
 
