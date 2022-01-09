@@ -160,18 +160,27 @@ public class GroupController {
         clearOutputFields(((Pane) outputPane.getContent()).getChildren());
     }
 
-    private void setCalculatedListener(List<Node> nodeList) {
-        for (Node node : nodeList) {
-            if (node instanceof TextField) {
-                final String sOld = ((TextField) node).getText();
-                ((TextField) node).textProperty().addListener(
-                        (observableValue, s, t1) -> warningLbl.setVisible(!t1.equals(sOld)));
+    private void initButtons() {
+        calcBtn.setOnAction(event -> {
+            if (!check100()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Сообщение программы");
+                alert.setHeaderText("Сумма долей циклов должна быть равна 100");
+                alert.setContentText("Нажмите ОК для продолжения");
+
+                DialogPane pane = alert.getDialogPane();
+                pane.getStylesheets().add(Objects.requireNonNull(
+                        FormApplication.class.getResource("/styles/style.css")).toExternalForm());
+
+                alert.showAndWait();
+
+                return;
             }
 
-            if (node instanceof Pane) {
-                setCalculatedListener(((Pane) node).getChildren());
-            }
-        }
+            operatingMode.calculation();
+
+
+        });
     }
 
     private void initValidators() {
@@ -198,6 +207,7 @@ public class GroupController {
             return ValidationResult.fromMessageIf(control, "Значение в этом поле должно быть больше 0", Severity.ERROR, condition);
         };
 
+        // set validators
         vs.registerValidator(pNomTxt, Validator.combine(emptyValidator, not0Validator));
         vs.registerValidator(pMaxTxt, Validator.combine(emptyValidator, not0Validator));
         vs.registerValidator(daysCountTxt, Validator.combine(emptyValidator, not0Validator));
@@ -212,27 +222,18 @@ public class GroupController {
         calcBtn.disableProperty().bind(vs.invalidProperty());
     }
 
-    private void initButtons() {
-        calcBtn.setOnAction(event -> {
-            if (!check100()) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Сообщение программы");
-                alert.setHeaderText("Сумма долей циклов должна быть равна 100");
-                alert.setContentText("Нажмите ОК для продолжения");
-
-                DialogPane pane = alert.getDialogPane();
-                pane.getStylesheets().add(Objects.requireNonNull(
-                        FormApplication.class.getResource("/styles/style.css")).toExternalForm());
-
-                alert.showAndWait();
-
-                return;
+    private void setCalculatedListener(List<Node> nodeList) {
+        for (Node node : nodeList) {
+            if (node instanceof TextField) {
+                final String sOld = ((TextField) node).getText();
+                ((TextField) node).textProperty().addListener(
+                        (observableValue, s, t1) -> warningLbl.setVisible(!t1.equals(sOld)));
             }
 
-            operatingMode.calculation();
-
-
-        });
+            if (node instanceof Pane) {
+                setCalculatedListener(((Pane) node).getChildren());
+            }
+        }
     }
 
     private void clearOutputFields(List<Node> nodeList) {
