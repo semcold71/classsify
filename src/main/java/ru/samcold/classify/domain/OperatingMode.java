@@ -5,11 +5,13 @@ import org.springframework.stereotype.Component;
 import ru.samcold.classify.utils.AMatrix;
 import ru.samcold.classify.utils.Decor;
 
+import java.io.Serializable;
+
 @Component
 public class OperatingMode {
 
     private final AMatrix aMatrix;
-    private final Decor decor;
+    private transient Decor decor;
 
     public OperatingMode(AMatrix aMatrix, Decor decor) {
         this.aMatrix = aMatrix;
@@ -206,4 +208,6 @@ public class OperatingMode {
         setAIso();
         setAGgtn();
     }
+
+
 }

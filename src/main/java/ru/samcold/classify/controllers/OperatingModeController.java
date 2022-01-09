@@ -12,11 +12,16 @@ import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import org.springframework.stereotype.Component;
 import ru.samcold.classify.FormApplication;
+import ru.samcold.classify.Tst;
 import ru.samcold.classify.domain.OperatingMode;
+import ru.samcold.classify.domain.OMProxy;
 import ru.samcold.classify.utils.Decor;
 import ru.samcold.classify.utils.FieldBinder;
 import ru.samcold.classify.utils.NumberValidator;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Objects;
 
@@ -178,9 +183,23 @@ public class OperatingModeController {
             }
 
             operatingMode.calculation();
-
-
+            writeToFile();
         });
+    }
+
+    private void writeToFile() {
+        OMProxy proxy = new OMProxy(operatingMode);
+
+        try {
+            FileOutputStream fos = new FileOutputStream("operatingMode.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            oos.writeObject(proxy);
+            oos.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void initValidators() {
