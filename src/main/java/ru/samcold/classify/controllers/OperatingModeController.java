@@ -12,7 +12,6 @@ import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import org.springframework.stereotype.Component;
 import ru.samcold.classify.FormApplication;
-import ru.samcold.classify.Tst;
 import ru.samcold.classify.domain.OperatingMode;
 import ru.samcold.classify.domain.OMProxy;
 import ru.samcold.classify.utils.Decor;
