@@ -8,7 +8,6 @@ import java.util.AbstractMap;
 import java.util.Map;
 
 @Component
-@NoArgsConstructor
 public class AMatrix {
     private final Map<String, Map<String, Map<String, String>>> map = Map.ofEntries(
             // region Q1
@@ -189,6 +188,9 @@ public class AMatrix {
             ))
             // endregion
     );
+
+    public AMatrix() {
+    }
 
     public String getA(String q, String u, String a) {
         return map.get(q).get(u).get(a);

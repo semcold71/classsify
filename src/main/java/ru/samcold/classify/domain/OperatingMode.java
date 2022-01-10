@@ -1,6 +1,7 @@
 package ru.samcold.classify.domain;
 
 import javafx.beans.property.*;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.samcold.classify.utils.AMatrix;
 import ru.samcold.classify.utils.Decor;
@@ -11,7 +12,7 @@ import java.io.Serializable;
 public class OperatingMode {
 
     private final AMatrix aMatrix;
-    private transient Decor decor;
+    private final Decor decor;
 
     public OperatingMode(AMatrix aMatrix, Decor decor) {
         this.aMatrix = aMatrix;

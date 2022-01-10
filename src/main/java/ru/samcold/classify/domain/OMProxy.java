@@ -24,5 +24,11 @@ public class OMProxy implements Serializable {
         this.pNom = om.pNomProperty().get();
         this.pMax = om.pMaxProperty().get();
         this.daysCount = om.daysCountProperty().get();
+        this.age = om.ageProperty().get();
+        this.p025 = p025;
+        this.p05 = p05;
+        this.p075 = p075;
+        this.p1 = p1;
     }
+
 }
