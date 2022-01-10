@@ -4,8 +4,8 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+import ru.samcold.classify.utils.A2Matrix;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import java.io.ObjectInputStream;
 public class ResidualResource {
 
     private OMProxy proxy;
+    private final A2Matrix matrix;
 
     private final IntegerProperty age = new SimpleIntegerProperty();
     private final IntegerProperty daysCount = new SimpleIntegerProperty();
@@ -76,12 +77,15 @@ public class ResidualResource {
         return yearsResource;
     }
 
-    public ResidualResource() {
+    public ResidualResource(A2Matrix matrix) {
+        this.matrix = matrix;
+
         getInputData();
 
         setAge();
         setDaysCount();
         setShiftsCount();
+        setNominalN();
     }
 
     private void getInputData() {
@@ -110,6 +114,7 @@ public class ResidualResource {
     }
 
     public void setNominalN() {
-        //this.nominalN.set(nominalN);
+        nominalNProperty().set(matrix.getN(proxy.getAIso()));
     }
+
 }

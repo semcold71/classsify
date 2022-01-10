@@ -1,5 +1,6 @@
 package ru.samcold.classify.domain;
 
+import javafx.beans.property.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,15 +21,33 @@ public class OMProxy implements Serializable {
     private int p075;
     private int p1;
 
+    private double pYear;
+    private double pMid;
+    private int n;
+    private String u;
+    private double kp;
+    private String q;
+    private String aIso;
+    private String aGgtn;
+
     public OMProxy(OperatingMode om) {
-        this.pNom = om.pNomProperty().get();
-        this.pMax = om.pMaxProperty().get();
-        this.daysCount = om.daysCountProperty().get();
-        this.age = om.ageProperty().get();
-        this.p025 = p025;
-        this.p05 = p05;
-        this.p075 = p075;
-        this.p1 = p1;
+        pNom = om.pNomProperty().get();
+        pMax = om.pMaxProperty().get();
+        daysCount = om.daysCountProperty().get();
+        age = om.ageProperty().get();
+        p025 = om.p025Property().get();
+        p05 = om.p05Property().get();
+        p075 = om.p075Property().get();
+        p1 = om.p1Property().get();
+
+        pYear = om.pYearProperty().get();
+        pMid = om.pMidProperty().get();
+        n = om.nProperty().get();
+        u = om.uProperty().get();
+        kp = om.kpProperty().get();
+        q = om.qProperty().get();
+        aIso = om.aIsoProperty().get();
+        aGgtn = om.aGgtnProperty().get();
     }
 
 }
